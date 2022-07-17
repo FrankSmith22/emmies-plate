@@ -9,4 +9,8 @@ List/Table of functional and non-functional requirements to be provided soon.
 
 `npm install`
 
+Go to `src/app/shared` and create a file called apiKey.js with the following line:
+`export const apiKey = "<API KEY>"`
+replace `<API KEY>` with a valid api key from spoonacular
+
 `npm start`
