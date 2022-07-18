@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logo from "../app/assets/imgs/logo192.png"
 import RecipeCard from '../features/recipe/RecipeCard';
@@ -9,11 +9,16 @@ import Loading from '../components/Loading';
 
 const HomePage = () => {
 
+    const [isSending, setIsSending] = useState(false);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchRandomRecipe());
-    }, [dispatch]);
+        if(isSending){
+            dispatch(fetchRandomRecipe());
+            setIsSending(false)
+        }
+    }, [dispatch, isSending]);
 
     const recipe = useSelector(selectRandomRecipe);
     const isLoading = useSelector((state) => state.recipes.isLoading);
@@ -27,7 +32,7 @@ const HomePage = () => {
                     <h1>Emmie's Plate</h1>
                     <img src={logo} />
                     <br />
-                    {/* <button className="btn btn-primary" onClick={ () => getRandomRecipe() }>Click me to get a recipe</button> */}
+                    <button className="btn btn-primary" onClick={ () => setIsSending(true) }>Click me to get a recipe</button>
                 </Col>
                 {
                     isLoading ? (

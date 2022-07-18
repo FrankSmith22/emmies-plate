@@ -23,14 +23,13 @@ export const fetchRandomRecipe = createAsyncThunk(
             return Promise.reject('Unable to fetch, status: ' + response.status);
         }
         const data = await response.json();
-        console.log(`randomly generated recipe: ${data}`)
         return data;
     }
 )
 
 const initialState = {
     randomRecipe: null,
-    isLoading: true, // dont set true initially, since we dont want to load until button is clicked
+    isLoading: false,
     errMsg: ''
 };
 
